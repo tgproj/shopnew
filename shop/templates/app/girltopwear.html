@@ -1,0 +1,33 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<div class="container my-5" xmlns="http://www.w3.org/1999/html">
+ <div class="row">
+  <div class="col-sm-3">
+
+   <div class="list-group">
+    <a href="{% url 'girlt_wears' 'All' %}" class="list-group-item
+       list-group-item-action" aria-current="true">All </a>
+    <a href="{% url 'girlt_wears' 'above' %}" class="list-group-item list-group-item-action" aria-current="true">Above 500</a>
+    <a href="{% url 'girlt_wears' 'below' %}" class="list-group-item list-group-item-action" aria-current="true">Below 500</a>
+   </div>
+  </div>
+  <div class="col-sm-8 offset-sm-1">
+   Top Wears
+   <div class="row">
+    {% for gt in girltops %}
+    <div class="col-sm-4 text-center mb-4">
+     <a href="{% url 'pdetails' gt.id %}" class="btn">
+     <div class="item">
+      <img src="{{ gt.product_image.url }}" alt="" height="300" class="" width="100%">
+         <div class="fw-bold">{{ gt.title }}</div>
+         <div class="fw-bold">Rs.{{ gt.discounted_price }}</div>
+         <small class="fw-light text-decoration-line-through">{{ gt.selling_price }}</small></div></a>
+     </div>
+       {% endfor %}
+    </div>
+   </div>
+  </div>
+ </div>
+{% endblock main-content %}

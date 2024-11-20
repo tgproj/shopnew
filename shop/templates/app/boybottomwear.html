@@ -1,0 +1,33 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<div class="container my-5" xmlns="http://www.w3.org/1999/html">
+ <div class="row">
+  <div class="col-sm-3">
+   
+   <div class="list-group">
+    <a href="{% url 'boyb_wears' 'All' %}" class="list-group-item
+       list-group-item-action" aria-current="true">All </a>
+    <a href="{% url 'boyb_wears' 'above' %}" class="list-group-item list-group-item-action" aria-current="true">Above 500</a>
+    <a href="{% url 'boyb_wears' 'below' %}" class="list-group-item list-group-item-action" aria-current="true">Below 500</a>
+   </div>
+  </div>
+  <div class="col-sm-8 offset-sm-1">
+   Bottom Wears
+   <div class="row">
+    {% for bb in boybottoms %}
+    <div class="col-sm-4 text-center mb-4">
+     <a href="{% url 'pdetails' bb.id %}" class="btn">
+     <div class="item">
+      <img src="{{ bb.product_image.url }}" alt="" height="300" class="" width="100%">
+         <div class="fw-bold">{{ bb.title }}</div>
+         <div class="fw-bold">Rs.{{ bb.discounted_price }}</div>
+         <small class="fw-light text-decoration-line-through">{{ bb.selling_price }}</small></div></a>
+     </div>
+       {% endfor %}
+    </div>
+   </div>
+  </div>
+ </div>
+{% endblock main-content %}
